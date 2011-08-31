@@ -1,0 +1,13 @@
+sox -t null /dev/null sine.wav synth 1.0 sine 1000.0
+play -n -c1 synth sin %-12 sin %-9 sin %-5 sin %-2 fade h 0.1 1 0.1
+
+To Plot
+sox --plot octave input-file -n highpass 1320 > highpass.plt
+octave highpass.plt
+//Change octave to gnuplot to use it instead ...
+sox -n -n synth 6 tri 10k:14k spectrogram -z 100 -w kaiser
+sox -n -n synth 6 tri 10k:30k spectrogram -z 100 -w kaiser
+sox -n -n synth 6 tri 30k:30k spectrogram -z 100 -w kaiser
+sox -n -n synth 6 tri 30k:30k spectrogram -z 200 -w kaiser
+sox sine.wav -n spectrogram
+sox sine.wav -n rate 500 spectrogram

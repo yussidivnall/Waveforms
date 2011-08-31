@@ -1,0 +1,14 @@
+From http://www.psychogeophysics.org/wiki/doku.php?id=plotting
+
+#.Wav to plot
+From the commandline:
+
+sox test.wav -r 44100 -1 -u -b -c 1 test.dat
+
+grep -v '^;' test.dat > test.datclean       
+
+and in gnuplot:
+
+plot 'test.datclean' with lines every 1000
+
+
